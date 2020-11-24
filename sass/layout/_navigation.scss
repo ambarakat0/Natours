@@ -92,6 +92,10 @@
       background-size: 225%; // to mk the white color moving towords the right side and disappear
       transition: all 0.4s;
 
+      @include respond(phone) {
+        font-size: 2rem;
+      }
+
       span {
         margin-right: 1.5rem;
         display: inline-block;
