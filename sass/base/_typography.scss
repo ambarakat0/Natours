@@ -1,0 +1,86 @@
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  /* font-size: 16px; */
+  line-height: 1.7;
+  color: $color-grey-dark;
+}
+
+.heading-primary {
+  color: $color-white;
+  text-transform: uppercase;
+  backface-visibility: hidden; /* to prevent the little shacking after the animation */
+  margin-bottom: 6rem;
+
+  // nesting approach in sass using & (& =.heading-primary "the class of the selected parent")
+  &--main {
+    display: block; /* to make each element over each other */
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3rem;
+
+    animation-name: moveInLeft; /* used to add the eanimation to the element */
+    animation-duration: 1s; /* how much time animaton need to be complelted*/
+    animation-timing-function: ease-out; /* the speed of the animation as slow to fast or fast to slow and so on */
+    /* animation-iteration-count: 3; how many times the animation occur*/
+    /* animation-delay: 3s; when the animation start*/
+    @include respond(phone) {
+      letter-spacing: 1rem;
+      font-size: 5rem;
+    }
+  }
+
+  &--sub {
+    display: block; /* to make each element over each other */
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.7rem;
+    animation: moveInRight 1s ease-out; /* shorter way to write the same code as moveInRigh (above) */
+
+    @include respond(phone) {
+      letter-spacing: 0.5rem;
+    }
+  }
+}
+
+.heading-secondary {
+  font-size: 3rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  //mk liner-grident effect over the text
+  background-image: linear-gradient(
+    to right,
+    $color-primary-light,
+    $color-primary-dark
+  );
+  -webkit-background-clip: text; // background clipped where exactly the text is
+  color: transparent; //to mk the img appear cuz it's behind the text
+  letter-spacing: 2px;
+  transition: all 0.2s;
+
+  @include respond(tab-port) {
+    font-size: 3rem;
+  }
+  @include respond(phone) {
+    font-size: 2.5rem;
+  }
+
+  &:hover {
+    transform: skewY(2deg) skewX(12deg) scale(1.1);
+    text-shadow: 0.5rem 1rem 2rem rgba($color-black, 0.2); //add shadow to text (x,y,blur,color)
+  }
+}
+
+.heading-tertiary {
+  font-size: $default-font-size;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.paragraph {
+  font-size: $default-font-size;
+  &:not(:last-child) {
+    margin-bottom: 3rem;
+  }
+}

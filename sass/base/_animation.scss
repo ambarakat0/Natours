@@ -1,0 +1,39 @@
+/* keyframes is a prp to make animation at diff stages (0,80,100) */
+@keyframes moveInLeft /* the name of the animation */ {
+    0% /* at the stage 0 */ {
+        opacity: 0;
+        transform: translateX(-10rem); /* start at 100px (-) from the left of the element */
+    }
+    80% /* at the stage 80 */{
+        transform: translateX(1rem); /* move 10px to right */
+    }
+    100% /* at the stage 100 */ { 
+        opacity: 1;
+        transform: translate(0); /* back to original postion */
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(10rem);
+    }
+    80% {
+        transform: translateX(-1rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(3rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+} 

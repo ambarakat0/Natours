@@ -1,0 +1,101 @@
+.btn {
+    &, //only  btn class to apply the effect to <button> element
+    /* : is pseduo classe used to add effect in specific situation */
+    &:link,/* link -> anchor tag which link to s/t */
+    &:visited /* visited -> how to look after clicking */{
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        display: inline-block;
+        border-radius: 10rem;
+        transition: all .2s;  /* transition is a prp to make animation with no specific period opp to keyframes */
+        position: relative;
+        font-size: 1.6rem;
+
+        //change for the <button> element
+        border: none;
+        cursor: pointer;
+    }
+
+    &:hover/* hover -> how it look when hovering it */
+    {
+        transform: translateY(-3px);
+        box-shadow: 0 1rem 2rem rgba($color-black, .2);  /* (x, y, blur, color) */
+
+        &::after { /* target the pseduo element of btn after hovering the btn */
+            transform: scaleX(1.4) scaleY(1.6); /* mk it bigger */
+            opacity: 0; /* to mk the backbtn disappear */
+        }
+    }
+
+    &:active,/* active -> how it look after click it */
+    &:focus  {
+        outline: none;
+        transform: translateY(-1px);
+        box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+    }
+
+    &--white {
+        background-color: $color-white;
+        color: $color-grey-dark;
+
+        &::after {
+            background-color: $color-white;
+        }
+    }
+
+    &--green {
+        background-color: $color-primary;
+        color: $color-white;
+
+        &::after {
+            background-color: $color-primary;
+        }
+    }
+
+
+    /* :: pseduo element */
+    &::after {
+        content:  ""; /* required */
+        display: inline-block;
+        height: 100%; /* 100% of the parent (btn) */
+        width: 100%; /* 100% of the parent (btn) */
+        border-radius: 10rem;
+        position: absolute; /* to mk it behiend not part of the parent(btn) */
+        top: 0; /* accuratly behiend the btn */
+        left: 0; /* accuratly behiend the btn */
+        z-index: -1; /* used to layer the elemnt over each other (-1 mk it behiend) */
+        transition: all 0.4s;
+    }
+
+    &--animated {
+        animation: moveInBottom 0.5s ease-out 0.75s; /* (name of animation, duration, timing function, delay) */
+        animation-fill-mode: backwards; /* to mk btn started with value of 0% in keyframes animation */
+    }
+}
+
+.btn-text {
+
+    &:link,
+    &:visited {
+        font-size: $default-font-size;
+        color: $color-primary;
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: 1px solid $color-primary;
+        padding: 3px;
+        transition: all .2s;
+    }
+
+    &:hover {
+        background-color: $color-primary;
+        color: $color-white;
+        box-shadow: 0 1rem 2rem rgba($color-black, .15);
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        box-shadow: 0 05rem 1rem rgba($color-black, .15);
+        transform: translateY(0);
+    }
+}

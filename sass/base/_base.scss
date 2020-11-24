@@ -1,0 +1,39 @@
+// partial sass file should begin with "_"
+
+/* basic to prevent the default margine and padding */
+*, 
+*::after,/* select pseudoelement cuz * don't include them so we should select them as well to apply the same effects  */
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; /* box-sizing not inherit so use "inherit" keyword to force it to be inheritable  */
+}
+
+html {
+  /*the root of the elements */
+  /*font-size: 10px;  /* 1rem = 10px cuz rem = the font size of the root */
+  font-size: 62.5%; /* to mk it 10px if the browser default 16px so it increase the web accessibility */
+
+  // if 2 media querey conflict the last one will be applied so we put them in this order
+  @include respond(tab-land) {
+    //width < 1200px
+    font-size: 56.25%; //1rem = 9px
+  }
+
+  @include respond(tab-port) {
+    //width < 900px
+    font-size: 50%; //1rem = 8px
+  }
+
+  @include respond(big-desktop) {
+    font-size: 75%; //1rem = 12px
+  }
+}
+
+body {
+  box-sizing: border-box; /* iheritable to all elements inside body cuz we used inherit keywords in * selector  */
+  padding: 3rem;
+  @include respond(tab-port) {
+    padding: 0;
+  }
+}

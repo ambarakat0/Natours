@@ -1,0 +1,45 @@
+.header {
+  position: relative;
+  height: 95vh; /* vh = the height of the view  */
+  background-image: linear-gradient(
+      /* background img with overlayer gradient   */ to right bottom,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)
+    ),
+    url(../img/hero.jpg);
+  background-size: cover;
+  background-position: top; /* mk the img stick to top of it in diff postions  */
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 75vh,
+    0 100%
+  ); /* clip the img from right bottom (x y, x y, x y, x y) as a clock from left to right  */
+
+  @include respond(phone) {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+  }
+  // nesting approach in sass using & (& =.header"the class of the selected parent")
+  &__logo-box {
+    position: absolute; /* the postion relative to the parent (header) so it should be relative */
+    top: 4rem;
+    left: 4rem;
+  }
+
+  &__logo {
+    height: 3.5rem;
+  }
+
+  &__text-box {
+    position: absolute;
+    top: 40%; /* the postion relative to the parent */
+    left: 50%; /* the postion relative to the parent */
+    transform: translate(
+      -50%,
+      -50%
+    ); /* the postion relative to the element itself */
+    text-align: center;
+  }
+}
