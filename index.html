@@ -2,12 +2,12 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <!-- responsive web site need to declare the content as width of device  and name:viewport-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
-        <link rel="stylesheet" href="css/icon-font.css">
-
-        <link rel="stylesheet" href="css/icon-font.css">
+        
+        <!-- <link rel="stylesheet" href="css/icon-font.css"> -->
         <link rel="stylesheet" href="css/style.css">
         <link rel="shortcut icon" type="image/png" href="img/favicon.png">
         
@@ -80,9 +80,35 @@
                         <!-- .divName>(element.className.AnotherClassName)*how many-->
                         <!-- .composition>(img.composition__photo.composition__photo--p1)*3 -->
                         <div class="composition">
-                            <img src="img/nat-1-large.jpg" alt="Photo 1" class="composition__photo composition__photo--p1">
+                            <!-- Resolution Switching -->
+                            <!-- 
+                            1-two sources of img with width descriptor with width inpx (300, 1000)
+                            2-use sizes to specifiy proximate width in viewport width in diff breakpoints
+                            3-alt attribute
+                            4-class attribute
+                            5-source as default if the borwser dosen't supp the srcset and sizes attributes  -->
+                            <img srcset="img/nat-1.jpg 300w, img/nat-1-large.jpg 1000w" 
+                                 sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px"
+                                 alt="Photo 1"
+                                 class="composition__photo composition__photo--p1"
+                                 src="img/nat-1-large.jpg">
+
+                            <img srcset="img/nat-2.jpg 300w, img/nat-2-large.jpg 1000w" 
+                                 sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px"
+                                 alt="Photo 2"
+                                 class="composition__photo composition__photo--p2"
+                                 src="img/nat-2-large.jpg">
+
+                            <img srcset="img/nat-3.jpg 300w, img/nat-3-large.jpg 1000w" 
+                                 sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px"
+                                 alt="Photo 3"
+                                 class="composition__photo composition__photo--p3"
+                                 src="img/nat-3-large.jpg">
+                                 
+
+                            <!-- <img src="img/nat-1-large.jpg" alt="Photo 1" class="composition__photo composition__photo--p1">
                             <img src="img/nat-2-large.jpg" alt="Photo 2" class="composition__photo composition__photo--p2">
-                            <img src="img/nat-3-large.jpg" alt="Photo 3" class="composition__photo composition__photo--p3">
+                            <img src="img/nat-3-large.jpg" alt="Photo 3" class="composition__photo composition__photo--p3"> -->
                         </div>
                     </div>
                 </div>
@@ -365,7 +391,20 @@
         </main>
         <footer class="footer">
             <div class="footer__logo-box">
-                <img src="img/logo-green-2x.png" alt="Full logo" class="footer__logo">
+
+                <!-- picture element allow to specifiy multiple sources for one img and in source elemnt we can write media query as in css  -->
+
+                <picture class="footer__logo">
+                    <!-- use this img (in source) in case of phone but if it not then use img in (img)  -->
+                    <!-- Art Direction: it's diff than resolution switching cuz we force the browser to use this img in this breakpoint -->
+                    <source srcset="img/logo-green-small-1x.png 1x, img/logo-green-small-2x.png 2x" 
+                    media="(max-width: 37.5em)">
+                    <!-- Density Switching: allow the broweser to choice the correct img for the screen if it low density-> 1x, high-> 2x -->
+                    <img srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x" alt="Full logo" class="footer__logo"
+                     src="img/logo-green-2x.png ">
+                </picture>
+
+            
             </div>
             <div class="row">
                 <div class="col-1-of-2">

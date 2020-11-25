@@ -12,6 +12,7 @@
     top: 0;
     left: 0;
     width: 100%;
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden; //hide the back part of the element
     border-radius: 3px;
     overflow: hidden; //cuz after add the img it coverd the parent and cancel the border-radius prp so overflow:hidden prevent this
@@ -179,7 +180,9 @@
     font-weight: 100;
   }
 
-  @include respond(tab-port) {
+  // @include respond(tab-port) {
+  // backcard will be visible when the screen less than 56em or not hover device
+  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
     height: auto; //
     border-radius: 3px;
     background-color: $color-white;

@@ -1,4 +1,5 @@
 .header {
+  height: 85vh; /* vh = the height of the view  */
   position: relative;
   height: 95vh; /* vh = the height of the view  */
   background-image: linear-gradient(
@@ -6,16 +7,32 @@
       rgba($color-primary-light, 0.8),
       rgba($color-primary-dark, 0.8)
     ),
-    url(../img/hero.jpg);
+    url(../img/hero-small.jpg);
   background-size: cover;
   background-position: top; /* mk the img stick to top of it in diff postions  */
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    100% 75vh,
-    0 100%
-  ); /* clip the img from right bottom (x y, x y, x y, x y) as a clock from left to right  */
+
+  @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+    height: 95vh; /* vh = the height of the view  */
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 75vh,
+      0 100%
+    ); /* clip the img from right bottom (x y, x y, x y, x y) as a clock from left to right  */
+  }
+
+  // > 192dpi = 2x screen
+  @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+    only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+    only screen and (min-width: 125em) {
+    background-image: linear-gradient(
+        /* background img with overlayer gradient   */ to right bottom,
+        rgba($color-primary-light, 0.8),
+        rgba($color-primary-dark, 0.8)
+      ),
+      url(../img/hero.jpg);
+  }
 
   @include respond(phone) {
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
